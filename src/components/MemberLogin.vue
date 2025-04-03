@@ -56,6 +56,7 @@ export default{
 
             googleUrl: "https://accounts.google.com/o/oauth2/v2/auth",
             googleClientId: "",
+
             googleRedirectUrl: "http://localhost:3000/member/google/redirect",
             // openid는 요청하지 않아도 기본적으로 제공. email과 profile은 요청시 제공.
             googleScope: "openid email profile https://www.googleapis.com/auth/user.birthday.read https://www.googleapis.com/auth/user.gender.read https://www.googleapis.com/auth/user.phonenumbers.read",
@@ -74,7 +75,9 @@ export default{
             }
             const response = await axios.post("http://localhost:8080/member/doLogin", loginData);
             const token = response.data.token;
+            const refreshToken = response.data.refreshToken
             localStorage.setItem("token", token);
+            localStorage.setItem("refreshToken", refreshToken);
             window.location.href = "/";
         },
         googleLogin(){

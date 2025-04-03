@@ -17,7 +17,9 @@ export default{
         async sendCodeToServer(code){
             const response = await axios.post("http://localhost:8080/member-service/member/naver/doLogin", {code});
             const token = response.data.token;
+            const refreshToken = response.data.refreshtoken;
             localStorage.setItem("token", token);
+            localStorage.setItem("refreshToken", refreshToken);
             window.location.href = "/";
         }
     }
